@@ -1,0 +1,33 @@
+get:
+  summary: Get all Pokemon instances
+  tags:
+    - Pokemon
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../index.yml#/components/schemas/PokemonView
+
+post:
+  summary: Create a Pokemon instance
+  tags:
+    - Pokemon
+  requestBody:
+    description: The Pokemon instance to create
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../index.yml#/components/schemas/PokemonPost
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/PokemonView
+  

@@ -1,0 +1,35 @@
+get:
+  summary: Get all Pokemon Types
+  tags:
+    - Type
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../index.yml#/components/schemas/TypeView
+
+post:
+  summary: Create a Pokemon Type
+  tags:
+    - Type
+  requestBody:
+    description: The Type to create
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../index.yml#/components/schemas/TypeView
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/TypeView
+    400:
+      $ref: ../../index.yml#/components/responses/400
+  

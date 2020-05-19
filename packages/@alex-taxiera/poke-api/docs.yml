@@ -1,0 +1,421 @@
+openapi: 3.0.0
+servers:
+  - url: 'http://localhost:3000'
+info:
+  version: 1.0.0
+  title: Poke API
+  description: API for Pokemon
+tags:
+  - name: Type
+    description: Data on Pokemon Types
+  - name: Species
+    description: Data on Pokemon Species
+paths:
+  /type:
+    get:
+      summary: Get all Pokemon Types
+      tags:
+        - Type
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TypeView'
+    post:
+      summary: Create a Pokemon Type
+      tags:
+        - Type
+      requestBody:
+        description: The Type to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeView'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeView'
+        '400':
+          $ref: '#/components/responses/400'
+  '/type/{name}':
+    get:
+      summary: Get a single Pokemon Type by name
+      tags:
+        - Type
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Name of the Pokemon Type to get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeView'
+        '404':
+          $ref: '#/components/responses/404'
+    patch:
+      summary: Update a Pokemon Type by name
+      tags:
+        - Type
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Name of the Pokemon Type to update
+      requestBody:
+        description: The data to update the Pokemon Type with
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypePartial'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeView'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      summary: Delete a Pokemon Type by name
+      tags:
+        - Type
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Name of the Pokemon Type to delete
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+  /species:
+    get:
+      summary: Get all Pokemon Species.
+      tags:
+        - Species
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SpeciesView'
+    post:
+      summary: Create a Pokemon Species.
+      tags:
+        - Species
+      requestBody:
+        description: The Pokemon Species to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpeciesPost'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeciesView'
+        '400':
+          $ref: '#/components/responses/400'
+  '/species/{number}':
+    get:
+      summary: Get a single Pokemon Species by Number.
+      tags:
+        - Species
+      parameters:
+        - in: path
+          name: number
+          schema:
+            type: integer
+          required: true
+          description: Number of the Pokemon Species to get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeciesView'
+        '404':
+          $ref: '#/components/responses/404'
+    patch:
+      summary: Update a Pokemon Species by Number
+      tags:
+        - Species
+      parameters:
+        - in: path
+          name: number
+          schema:
+            type: integer
+          required: true
+          description: Number of the Pokemon Species to update
+      requestBody:
+        description: The data to update the Pokemon Species with
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpeciesUpdate'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeciesView'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      summary: Delete a Pokemon Species by number
+      tags:
+        - Species
+      parameters:
+        - in: path
+          name: number
+          schema:
+            type: integer
+          required: true
+          description: Number of the Pokemon Species to delete
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+  /pokemon:
+    get:
+      summary: Get all Pokemon instances
+      tags:
+        - Pokemon
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PokemonView'
+    post:
+      summary: Create a Pokemon instance
+      tags:
+        - Pokemon
+      requestBody:
+        description: The Pokemon instance to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PokemonPost'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PokemonView'
+  '/pokemon/{id}':
+    get:
+      summary: Get a single Pokemon instance by ID
+      tags:
+        - Pokemon
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the Pokemon instance to get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PokemonView'
+        '404':
+          $ref: '#/components/responses/404'
+    patch:
+      summary: Update a Pokemon instance by ID
+      tags:
+        - Pokemon
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the Pokemon instance to update
+      requestBody:
+        description: The data to update the Pokemon instance with
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PokemonUpdate'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PokemonView'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      summary: Delete a Pokemon instance by id
+      tags:
+        - Pokemon
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the Pokemon instance to delete
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+components:
+  responses:
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 404
+        message:
+          type: string
+          example: Not Found
+    TypeView:
+      allOf:
+        - $ref: '#/components/schemas/TypePartial'
+        - type: object
+          required:
+            - name
+    TypePartial:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Poison
+        flavorText:
+          type: string
+          example: Poison Type Pokemon are poisonous
+    SpeciesView:
+      allOf:
+        - $ref: '#/components/schemas/SpeciesPartial'
+        - type: object
+          required:
+            - number
+            - name
+            - type1
+          properties:
+            type1:
+              $ref: '#/components/schemas/TypeView'
+            type2:
+              $ref: '#/components/schemas/TypeView'
+    SpeciesPartial:
+      type: object
+      properties:
+        number:
+          type: number
+          example: 151
+        name:
+          type: string
+          example: Pikachu
+    SpeciesUpdate:
+      allOf:
+        - $ref: '#/components/schemas/SpeciesPartial'
+        - type: object
+          properties:
+            type1:
+              type: string
+              example: Normal
+            type2:
+              type: string
+              example: Fairy
+    SpeciesPost:
+      allOf:
+        - $ref: '#/components/schemas/SpeciesUpdate'
+        - type: object
+          required:
+            - number
+            - name
+            - type1
+    PokemonPartial:
+      type: object
+      properties:
+        nickname:
+          type: string
+          example: Sparky
+    PokemonView:
+      allOf:
+        - $ref: '#/components/schemas/PokemonPartial'
+        - type: object
+          required:
+            - id
+            - species
+          properties:
+            id:
+              type: string
+              example: 5ec0b86ae1e41239ff665b6c
+            species:
+              $ref: '#/components/schemas/SpeciesView'
+    PokemonPost:
+      allOf:
+        - $ref: '#/components/schemas/PokemonUpdate'
+        - type: object
+          required:
+            - species
+    PokemonUpdate:
+      allOf:
+        - $ref: '#/components/schemas/PokemonPartial'
+        - type: object
+          properties:
+            species:
+              type: number
+              example: 151

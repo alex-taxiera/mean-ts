@@ -1,0 +1,60 @@
+openapi: 3.0.0
+servers:
+  - url: http://localhost:3000
+info:
+  version: 1.0.0
+  title: Poke API
+  description: API for Pokemon
+tags:
+  -
+    name: Type
+    description: Data on Pokemon Types
+  -
+    name: Species
+    description: Data on Pokemon Species
+
+paths:
+  /type:
+    $ref: ./paths/type/index.yml
+  /type/{name}:
+    $ref: ./paths/type/:name.yml
+
+  /species:
+    $ref: ./paths/species/index.yml
+  /species/{number}:
+    $ref: ./paths/species/:number.yml
+
+  /pokemon:
+    $ref: ./paths/pokemon/index.yml
+  /pokemon/{id}:
+    $ref: ./paths/pokemon/:id.yml
+
+components:
+  responses:
+    400:
+      $ref: ./definitions/responses/400.yml
+    404:
+      $ref: ./definitions/responses/404.yml
+  schemas:
+    Error:
+      $ref: ./definitions/error.yml
+    TypeView:
+      $ref: ./definitions/type/view.yml
+    TypePartial:
+      $ref: ./definitions/type/partial.yml
+    SpeciesView:
+      $ref: ./definitions/species/view.yml
+    SpeciesPartial:
+      $ref: ./definitions/species/partial.yml
+    SpeciesUpdate:
+      $ref: ./definitions/species/update.yml
+    SpeciesPost:
+      $ref: ./definitions/species/post.yml
+    PokemonPartial:
+      $ref: ./definitions/pokemon/partial.yml
+    PokemonView:
+      $ref: ./definitions/pokemon/view.yml
+    PokemonPost:
+      $ref: ./definitions/pokemon/post.yml
+    PokemonUpdate:
+      $ref: ./definitions/pokemon/update.yml

@@ -1,0 +1,11 @@
+allOf:
+  - $ref: ./partial.yml
+  -
+    type: object
+    properties:
+      type1:
+        type: string
+        example: Normal
+      type2:
+        type: string
+        example: Fairy

@@ -1,0 +1,8 @@
+allOf:
+  - $ref: ./partial.yml
+  -
+    type: object
+    properties:
+      species:
+        type: number
+        example: 151

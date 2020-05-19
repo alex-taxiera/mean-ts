@@ -1,0 +1,68 @@
+get:
+  summary: Get a single Pokemon instance by ID
+  tags:
+    - Pokemon
+  parameters:
+    -
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of the Pokemon instance to get
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/PokemonView
+    404:
+      $ref: ../../index.yml#/components/responses/404
+
+patch:
+  summary: Update a Pokemon instance by ID
+  tags:
+    - Pokemon
+  parameters:
+    -
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of the Pokemon instance to update
+  requestBody:
+    description: The data to update the Pokemon instance with
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../index.yml#/components/schemas/PokemonUpdate
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/PokemonView
+    404:
+      $ref: ../../index.yml#/components/responses/404
+
+delete:
+  summary: Delete a Pokemon instance by id
+  tags:
+    - Pokemon
+  parameters:
+    -
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of the Pokemon instance to delete
+  responses:
+    204:
+      description: No Content
+    404:
+      $ref: ../../index.yml#/components/responses/404

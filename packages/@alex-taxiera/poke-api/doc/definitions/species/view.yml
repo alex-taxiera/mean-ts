@@ -1,0 +1,13 @@
+allOf:
+  - $ref: ./partial.yml
+  -
+    type: object
+    required:
+      - number
+      - name
+      - type1
+    properties:
+      type1:
+        $ref: '../../index.yml#/components/schemas/TypeView'
+      type2:
+        $ref: '../../index.yml#/components/schemas/TypeView'

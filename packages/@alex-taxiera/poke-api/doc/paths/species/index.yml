@@ -1,0 +1,35 @@
+get:
+  summary: Get all Pokemon Species.
+  tags:
+    - Species
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../index.yml#/components/schemas/SpeciesView
+
+post:
+  summary: Create a Pokemon Species.
+  tags:
+    - Species
+  requestBody:
+    description: The Pokemon Species to create.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../index.yml#/components/schemas/SpeciesPost
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/SpeciesView
+    400:
+      $ref: ../../index.yml#/components/responses/400
+  

@@ -1,0 +1,8 @@
+type: object
+properties:
+  number:
+    type: number
+    example: 151
+  name:
+    type: string
+    example: Pikachu

@@ -1,0 +1,69 @@
+get:
+  summary: Get a single Pokemon Type by name
+  tags:
+    - Type
+  parameters:
+    -
+      in: path
+      name: name
+      schema:
+        type: string
+      required: true
+      description: Name of the Pokemon Type to get
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/TypeView
+    404:
+      $ref: ../../index.yml#/components/responses/404
+
+patch:
+  summary: Update a Pokemon Type by name
+  tags:
+    - Type
+  parameters:
+    -
+      in: path
+      name: name
+      schema:
+        type: string
+      required: true
+      description: Name of the Pokemon Type to update
+  requestBody:
+    description: The data to update the Pokemon Type with
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../index.yml#/components/schemas/TypePartial
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/TypeView
+    404:
+      $ref: ../../index.yml#/components/responses/404
+
+delete:
+  summary: Delete a Pokemon Type by name
+  tags:
+    - Type
+  parameters:
+    -
+      in: path
+      name: name
+      schema:
+        type: string
+      required: true
+      description: Name of the Pokemon Type to delete
+  responses:
+    204:
+      description: No Content
+    404:
+      $ref: ../../index.yml#/components/responses/404
+

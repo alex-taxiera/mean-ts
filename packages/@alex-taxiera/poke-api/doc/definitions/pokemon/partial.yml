@@ -1,0 +1,5 @@
+type: object
+properties:
+  nickname:
+    type: string
+    example: Sparky

@@ -1,0 +1,68 @@
+get:
+  summary: Get a single Pokemon Species by Number.
+  tags:
+    - Species
+  parameters:
+    -
+      in: path
+      name: number
+      schema:
+        type: integer
+      required: true
+      description: Number of the Pokemon Species to get
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/SpeciesView
+    404:
+      $ref: ../../index.yml#/components/responses/404
+
+patch:
+  summary: Update a Pokemon Species by Number
+  tags:
+    - Species
+  parameters:
+    -
+      in: path
+      name: number
+      schema:
+        type: integer
+      required: true
+      description: Number of the Pokemon Species to update
+  requestBody:
+    description: The data to update the Pokemon Species with
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../index.yml#/components/schemas/SpeciesUpdate
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../index.yml#/components/schemas/SpeciesView
+    404:
+      $ref: ../../index.yml#/components/responses/404
+
+delete:
+  summary: Delete a Pokemon Species by number
+  tags:
+    - Species
+  parameters:
+    -
+      in: path
+      name: number
+      schema:
+        type: integer
+      required: true
+      description: Number of the Pokemon Species to delete
+  responses:
+    204:
+      description: No Content
+    404:
+      $ref: ../../index.yml#/components/responses/404
