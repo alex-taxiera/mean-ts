@@ -48,6 +48,9 @@ rules:
       classes: always
       blocks: never
       switches: never
+  comma-dangle:
+    - error
+    - always-multiline
   '@typescript-eslint/no-useless-constructor':
     - error
   '@typescript-eslint/no-inferrable-types':
