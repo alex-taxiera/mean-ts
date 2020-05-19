@@ -1,0 +1,44 @@
+{
+  "name": "poke-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node --files -r tsconfig-paths/register src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register .rc/index.ts",
+    "debug": "node --inspect-brk=0.0.0.0:9229 -r ts-node/register -r tsconfig-paths/register src/index.ts",
+    "swagger:validate": "swagger-cli validate doc/index.yml",
+    "swagger:bundle": "swagger-cli bundle -t yaml -o docs.yml doc/index.yml",
+    "types:generate": "dtsgen -o index.d.ts docs.yml"
+  },
+  "files": [
+    "index.d.ts",
+    "docs.yml"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@overnightjs/core": "^1.6.15",
+    "@overnightjs/jwt": "^1.1.15",
+    "@overnightjs/logger": "^1.1.10",
+    "@typegoose/typegoose": "^7.1.2",
+    "@types/express": "^4.17.6",
+    "@types/express-jwt": "0.0.42",
+    "@types/mongoose": "^5.7.20",
+    "@types/node": "^14.0.1",
+    "express": "^4.17.1",
+    "http-status-codes": "^1.4.0",
+    "mongoose": "^5.9.15",
+    "openapi-validator-middleware": "^3.0.0",
+    "ts-node": "^8.10.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.2"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^3.12.4",
+    "dtsgenerator": "^2.6.0",
+    "js-yaml": "^3.13.1",
+    "swagger-cli": "^4.0.2"
+  }
+}
