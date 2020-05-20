@@ -44,3 +44,5 @@ export class Base {
 
     return model ?? undefined
   }
+
+}
