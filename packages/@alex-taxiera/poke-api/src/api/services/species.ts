@@ -5,6 +5,7 @@ import {
 } from '@api/models/species'
 import { getByName as getTypeByName } from './type'
 import { BadRequestError } from '@utils/error'
+import { populateWithDeleted } from '@utils/populateWithDeleted'
 
 export function populate (species: SpeciesDoc): Promise<SpeciesDoc>
 export function populate (
@@ -13,16 +14,15 @@ export function populate (
 export function populate (
   species: SpeciesDoc | Array<SpeciesDoc>,
 ): Promise<SpeciesDoc | Array<SpeciesDoc>> {
+  const populatePath = 'type1 type2'
   return Array.isArray(species)
     ? Promise.all(
-      species.map((s) => s.populate('type1').populate('type2').execPopulate()),
-    ) : species.populate('type1').populate('type2').execPopulate()
+      species.map((s) => populateWithDeleted(s, populatePath)),
+    ) : populateWithDeleted(species, populatePath)
 }
 
 export async function getAll (): Promise<Array<SpeciesDoc>> {
-  const models = await SpeciesModel.find({
-    isDeleted: false,
-  })
+  const models = await SpeciesModel.find()
 
   return populate(models)
 }
@@ -34,7 +34,6 @@ export async function getByNumber (
 
   const model = await SpeciesModel.findOne({
     number,
-    isDeleted: false,
   })
 
   if (model) {
@@ -109,7 +108,6 @@ export async function updateOne (
 
   const model = await SpeciesModel.findOneAndUpdate({
     number,
-    isDeleted: false,
   }, patch, { new: true })
 
   if (model) {
@@ -124,8 +122,7 @@ export async function deleteOne (
 ): Promise<void> {
   const number = typeof num === 'number' ? num : parseInt(num)
 
-  await SpeciesModel.deleteOne({
+  await SpeciesModel.findOneAndMarkDeleted<Species>({
     number,
-    isDeleted: false,
   })
 }

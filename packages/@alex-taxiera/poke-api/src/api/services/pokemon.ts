@@ -42,9 +42,7 @@ export function populate (
 }
 
 export async function getAll (): Promise<Array<PokemonDoc>> {
-  const models = await PokemonModel.find({
-    isDeleted: false,
-  })
+  const models = await PokemonModel.find()
 
   return populate(models)
 }
@@ -54,7 +52,6 @@ export async function getById (
 ): Promise<PokemonDoc | undefined> {
   const model = await PokemonModel.findOne({
     id,
-    isDeleted: false,
   })
 
   if (model) {
@@ -108,7 +105,6 @@ export async function updateOne (
 
   const model = await PokemonModel.findOneAndUpdate({
     id,
-    isDeleted: false,
   }, patch, { new: true })
 
   if (model) {
@@ -121,8 +117,7 @@ export async function updateOne (
 export async function deleteOne (
   id: string,
 ): Promise<void> {
-  await PokemonModel.deleteOne({
+  await PokemonModel.findOneAndMarkDeleted<Pokemon>({
     id,
-    isDeleted: false,
   })
 }

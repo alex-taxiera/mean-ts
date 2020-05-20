@@ -1,9 +1,7 @@
-import { TypeDoc, TypeModel } from '@api/models/type'
+import { TypeDoc, TypeModel, Type } from '@api/models/type'
 
 export async function getAll (): Promise<Array<TypeDoc>> {
-  const models = await TypeModel.find({
-    isDeleted: false,
-  })
+  const models = await TypeModel.find()
 
   return models
 }
@@ -13,7 +11,6 @@ export async function getByName (
 ): Promise<TypeDoc | undefined> {
   const model = await TypeModel.findOne({
     name,
-    isDeleted: false,
   })
 
   return model ?? undefined
@@ -33,7 +30,6 @@ export async function updateOne (
 ): Promise<TypeDoc | undefined> {
   const model = await TypeModel.findOneAndUpdate({
     name,
-    isDeleted: false,
   }, data, { new: true })
 
   return model ?? undefined
@@ -42,8 +38,7 @@ export async function updateOne (
 export async function deleteOne (
   name: string,
 ): Promise<void> {
-  await TypeModel.deleteOne({
+  await TypeModel.findOneAndMarkDeleted<Type>({
     name,
-    isDeleted: false,
   })
 }
