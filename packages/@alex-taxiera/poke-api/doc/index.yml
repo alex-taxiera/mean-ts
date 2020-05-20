@@ -12,6 +12,9 @@ tags:
   -
     name: Species
     description: Data on Pokemon Species
+  -
+    name: Pokemon
+    description: Data on Pokemon instances
 
 paths:
   /type:
