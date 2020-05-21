@@ -1,4 +1,9 @@
-import { RequestHandler, Request, Response, NextFunction } from 'express'
+import {
+  RequestHandler,
+  Request,
+  Response,
+  NextFunction,
+} from 'express'
 
 export const async = (action: RequestHandler) => {
   return async (

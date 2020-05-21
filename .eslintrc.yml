@@ -7,6 +7,8 @@ parserOptions:
   ecmaVersion: 2018
   sourceType: module
   project: ./tsconfig.json
+plugins:
+  - modules-newline
 extends:
   - standard
   - plugin:@typescript-eslint/eslint-recommended
@@ -19,6 +21,16 @@ rules:
   arrow-parens:
     - error
   no-console:
+    - error
+  object-curly-newline:
+    - error
+    -
+      multiline: true
+      minProperties: 3
+      consistent: true
+  modules-newline/import-declaration-newline:
+    - error
+  modules-newline/export-declaration-newline:
     - error
   brace-style:
     - error

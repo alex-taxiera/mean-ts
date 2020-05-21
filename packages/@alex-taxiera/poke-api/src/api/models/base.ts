@@ -1,5 +1,8 @@
 import {
-  prop, modelOptions, pre, DocumentType,
+  prop,
+  modelOptions,
+  pre,
+  DocumentType,
 } from '@typegoose/typegoose'
 import { ModelType } from '@typegoose/typegoose/lib/types'
 import { FilterQuery } from 'mongoose'
@@ -38,9 +41,7 @@ export class Base {
     const model = await this.findOneAndUpdate({
       ...filter,
       isDeleted: false,
-    }, {
-      isDeleted: true,
-    }, { new: true })
+    }, { isDeleted: true }, { new: true })
 
     return model ?? undefined
   }

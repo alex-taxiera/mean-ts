@@ -3,7 +3,11 @@ import {
   UNAUTHORIZED,
   BAD_REQUEST,
 } from 'http-status-codes'
-import { Request, Response, NextFunction } from 'express'
+import {
+  Request,
+  Response,
+  NextFunction,
+} from 'express'
 
 import { UnauthorizedError } from 'express-jwt'
 import { Logger } from '@overnightjs/logger'
