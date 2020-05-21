@@ -1,4 +1,8 @@
-import { TypeDoc, TypeModel, Type } from '@api/models/type'
+import {
+  TypeDoc,
+  TypeModel,
+  Type,
+} from '@api/models/type'
 
 export async function getAll (): Promise<Array<TypeDoc>> {
   const models = await TypeModel.find()

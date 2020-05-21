@@ -7,7 +7,10 @@ import {
   getByNumber as getSpeciesByNumber,
   populate as populateSpecies,
 } from './species'
-import { BadRequestError, UnhandledError } from '@utils/error'
+import {
+  BadRequestError,
+  UnhandledError,
+} from '@utils/error'
 import { isDocument } from '@typegoose/typegoose'
 
 export function populate (pokemon: PokemonDoc): Promise<PokemonDoc>

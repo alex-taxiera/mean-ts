@@ -1,12 +1,17 @@
-
 import path from 'path'
 import fs from 'fs'
 
 import bodyParser from 'body-parser'
-import { Request, Response } from 'express'
+import {
+  Request,
+  Response,
+} from 'express'
 
 import { Server } from '@overnightjs/core'
-import { Logger, LoggerModes } from '@overnightjs/logger'
+import {
+  Logger,
+  LoggerModes,
+} from '@overnightjs/logger'
 import { mongoose } from '@typegoose/typegoose'
 
 import { init as initValidator } from 'openapi-validator-middleware'
@@ -17,7 +22,6 @@ const logFilePath = path.join(__dirname, '../sampleProject.log')
 process.env.OVERNIGHT_LOGGER_FILEPATH = logFilePath
 process.env.OVERNIGHT_LOGGER_MODE = LoggerModes.Console
 process.env.OVERNIGHT_LOGGER_RM_TIMESTAMP = 'false'
-process.env.OVERNIGHT_JWT_SECRET = process.env.OVERNIGHT_JWT_SECRET ?? 'test'
 
 class NormalRouterServer extends Server {
 

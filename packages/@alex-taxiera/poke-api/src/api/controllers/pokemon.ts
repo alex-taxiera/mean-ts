@@ -9,7 +9,10 @@ import {
   Middleware,
 } from '@overnightjs/core'
 import { async } from '@utils/asyncWrapper'
-import { Request, Response } from 'express'
+import {
+  Request,
+  Response,
+} from 'express'
 import { validate } from 'openapi-validator-middleware'
 import { view } from '@api/views/pokemon'
 import {
@@ -19,8 +22,14 @@ import {
   getById,
   updateOne,
 } from '@api/services/pokemon'
-import { OK, NO_CONTENT } from 'http-status-codes'
-import { NotFoundError, UnhandledError } from '@utils/error'
+import {
+  OK,
+  NO_CONTENT,
+} from 'http-status-codes'
+import {
+  NotFoundError,
+  UnhandledError,
+} from '@utils/error'
 
 @Controller('pokemon')
 @ClassWrapper(async)

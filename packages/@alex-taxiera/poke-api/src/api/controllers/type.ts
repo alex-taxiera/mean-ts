@@ -19,11 +19,21 @@ import {
   updateOne,
 } from '@api/services/type'
 import { view } from '@api/views/type'
-import { OK, NO_CONTENT } from 'http-status-codes'
+import {
+  OK,
+  NO_CONTENT,
+} from 'http-status-codes'
 import { async } from '@utils/asyncWrapper'
 import { validate } from 'openapi-validator-middleware'
 import { CRUDController } from './CRUD'
-import { NotFoundError, UnhandledError, BadRequestError } from '@utils/error'
+import {
+  NotFoundError,
+  UnhandledError,
+  BadRequestError,
+} from '@utils/error'
+import {
+  Params,
+} from '@utils/params'
 
 @Controller('type')
 @ClassWrapper(async)
