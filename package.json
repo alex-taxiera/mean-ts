@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "build": "lerna run build",
     "lint": "lerna run lint",
     "preinstall": "npx lerna clean",
     "postinstall": "lerna bootstrap --hoist"
