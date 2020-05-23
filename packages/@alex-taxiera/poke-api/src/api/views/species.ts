@@ -8,7 +8,7 @@ import {
 import {
   view as typeView,
 } from '@api/views/type'
-import { UnhandledError } from '@utils/error'
+import { ServerError } from '@utils/error'
 
 export function view (species: SpeciesDoc): SpeciesView
 export function view (
@@ -20,7 +20,7 @@ export function view (
   if (Array.isArray(species)) {
     return species.map((s): SpeciesView => {
       if (!isDocument(s.type1)) {
-        throw new UnhandledError('Bad "type1"')
+        throw new ServerError('Bad "type1"')
       }
 
       if (!isDocument(s.type2) && s.type2) {
@@ -37,11 +37,11 @@ export function view (
   }
 
   if (!isDocument(species.type1)) {
-    throw new UnhandledError('Bad "type1"')
+    throw new ServerError('Bad "type1"')
   }
 
   if (!isDocument(species.type2) && species.type2) {
-    throw new UnhandledError('Bad "type2"')
+    throw new ServerError('Bad "type2"')
   }
 
   return {

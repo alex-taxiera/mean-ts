@@ -38,7 +38,7 @@ export class NotFoundError extends ErrorResponse {
 
 }
 
-export class UnhandledError extends ErrorResponse {
+export class ServerError extends ErrorResponse {
 
   constructor (message?: string) {
     super(

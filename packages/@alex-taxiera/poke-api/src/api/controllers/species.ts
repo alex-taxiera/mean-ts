@@ -28,15 +28,20 @@ import {
 } from 'http-status-codes'
 import {
   NotFoundError,
-  UnhandledError,
+  ServerError,
+  BadRequestError,
 } from '@utils/error'
+import { Params } from '@utils/params'
 
 @Controller('species')
 @ClassWrapper(async)
 export class SpeciesController implements CRUDController {
 
   @Get()
-  public async getAll (req: Request, res: Response): Promise<Response> {
+  public async getAll (
+    req: Request,
+    res: Response<GetSpecies.$200>,
+  ): Promise<typeof res> {
     const docs = await getAll()
 
     return res.status(OK).json(view(docs))
@@ -44,7 +49,18 @@ export class SpeciesController implements CRUDController {
 
   @Post()
   @Middleware(validate)
-  public async post (req: Request, res: Response): Promise<Response> {
+  public async post (
+    req: Request<
+      Params,
+      PostSpecies.$200,
+      PostSpecies.RequestBody
+    >,
+    res: Response<PostSpecies.$200>,
+  ): Promise<typeof res> {
+    if (await getByNumber(req.body.number)) {
+      throw new BadRequestError('Species already exists')
+    }
+
     const model = await createOne(req.body)
 
     return res.status(OK).json(view(model))
@@ -52,9 +68,14 @@ export class SpeciesController implements CRUDController {
 
   @Get(':number')
   @Middleware(validate)
-  public async get (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Species$Number.Get.PathParameters = req.params as any
-    const doc = await getByNumber(params.number)
+  public async get (
+    req: Request<
+      Params<GetSpecies$Number.PathParameters>,
+      GetSpecies$Number.$200
+    >,
+    res: Response<GetSpecies$Number.$200>,
+  ): Promise<typeof res> {
+    const doc = await getByNumber(req.params.number)
 
     if (!doc) {
       throw new NotFoundError()
@@ -65,18 +86,24 @@ export class SpeciesController implements CRUDController {
 
   @Patch(':number')
   @Middleware(validate)
-  public async patch (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Species$Number.Patch.PathParameters = req.params as any
-    const doc = await getByNumber(params.number)
+  public async patch (
+    req: Request<
+      Params<PatchSpecies$Number.PathParameters>,
+      PatchSpecies$Number.$200,
+      PatchSpecies$Number.RequestBody
+    >,
+    res: Response<PatchSpecies$Number.$200>,
+  ): Promise<typeof res> {
+    const doc = await getByNumber(req.params.number)
 
     if (!doc) {
       throw new NotFoundError()
     }
 
-    const updated = await updateOne(params.number, req.body)
+    const updated = await updateOne(req.params.number, req.body)
 
     if (!updated) {
-      throw new UnhandledError()
+      throw new ServerError()
     }
 
     return res.status(OK).json(view(updated))
@@ -84,15 +111,20 @@ export class SpeciesController implements CRUDController {
 
   @Delete(':number')
   @Middleware(validate)
-  public async delete (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Species$Number.Delete.PathParameters = req.params as any
-    const doc = await getByNumber(params.number)
+  public async delete (
+    req: Request<
+      Params<DeleteSpecies$Number.PathParameters>,
+      undefined
+    >,
+    res: Response<undefined>,
+  ): Promise<typeof res> {
+    const doc = await getByNumber(req.params.number)
 
     if (!doc) {
       throw new NotFoundError()
     }
 
-    await deleteOne(params.number)
+    await deleteOne(req.params.number)
 
     return res.status(NO_CONTENT).send()
   }

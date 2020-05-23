@@ -28,10 +28,8 @@ export async function getAll (): Promise<Array<SpeciesDoc>> {
 }
 
 export async function getByNumber (
-  num: number | string,
+  number: number,
 ): Promise<SpeciesDoc | undefined> {
-  const number = typeof num === 'number' ? num : parseInt(num)
-
   const model = await SpeciesModel.findOne({
     number,
   })
@@ -56,11 +54,7 @@ export async function createOne (
   const t2 = (type2 ? await getTypeByName(type2) : null) ?? undefined
 
   if (!t1 || (type2 && !t2)) {
-    throw Error('Invalid Type')
-  }
-
-  if (await getByNumber(rest.number)) {
-    throw new BadRequestError('Species already exists')
+    throw new BadRequestError(`Invalid Type: ${t1 ? type2 : type1}`)
   }
 
   const model = await SpeciesModel.create({
@@ -73,11 +67,9 @@ export async function createOne (
 }
 
 export async function updateOne (
-  num: number | string,
+  number: number,
   data: PatchSpecies$Number.RequestBody,
 ): Promise<SpeciesDoc | undefined> {
-  const number = typeof num === 'number' ? num : parseInt(num)
-
   const {
     type1,
     type2,
@@ -118,10 +110,8 @@ export async function updateOne (
 }
 
 export async function deleteOne (
-  num: number | string,
+  number: number,
 ): Promise<void> {
-  const number = typeof num === 'number' ? num : parseInt(num)
-
   await SpeciesModel.findOneAndMarkDeleted<Species>({
     number,
   })

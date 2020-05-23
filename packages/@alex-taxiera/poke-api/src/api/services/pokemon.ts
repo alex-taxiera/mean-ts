@@ -9,7 +9,7 @@ import {
 } from './species'
 import {
   BadRequestError,
-  UnhandledError,
+  ServerError,
 } from '@utils/error'
 import { isDocument } from '@typegoose/typegoose'
 
@@ -26,7 +26,7 @@ export function populate (
         (p) => p.populate('species').execPopulate()
           .then(async (p1) => {
             if (!isDocument(p1.species)) {
-              throw new UnhandledError('ripip')
+              throw new ServerError('ripip')
             }
 
             p1.species = await populateSpecies(p1.species)
@@ -36,7 +36,7 @@ export function populate (
     ) : pokemon.populate('species').execPopulate()
       .then(async (p) => {
         if (!isDocument(p.species)) {
-          throw new UnhandledError('ripip')
+          throw new ServerError('ripip')
         }
 
         p.species = await populateSpecies(p.species)

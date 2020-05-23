@@ -28,15 +28,19 @@ import {
 } from 'http-status-codes'
 import {
   NotFoundError,
-  UnhandledError,
+  ServerError,
 } from '@utils/error'
+import { Params } from '@utils/params'
 
 @Controller('pokemon')
 @ClassWrapper(async)
 export class PokemonController implements CRUDController {
 
   @Get()
-  public async getAll (req: Request, res: Response): Promise<Response> {
+  public async getAll (
+    req: Request,
+    res: Response<GetPokemon.$200>,
+  ): Promise<typeof res> {
     const docs = await getAll()
 
     return res.status(OK).json(view(docs))
@@ -44,7 +48,14 @@ export class PokemonController implements CRUDController {
 
   @Post()
   @Middleware(validate)
-  public async post (req: Request, res: Response): Promise<Response> {
+  public async post (
+    req: Request<
+      Params,
+      PostPokemon.$200,
+      PostPokemon.RequestBody
+    >,
+    res: Response<PostPokemon.$200>,
+  ): Promise<typeof res> {
     const model = await createOne(req.body)
 
     return res.status(OK).json(view(model))
@@ -52,9 +63,14 @@ export class PokemonController implements CRUDController {
 
   @Get(':id')
   @Middleware(validate)
-  public async get (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Pokemon$Id.Get.PathParameters = req.params as any
-    const doc = await getById(params.id)
+  public async get (
+    req: Request<
+      Params<GetPokemon$Id.PathParameters>,
+      GetPokemon$Id.$200
+    >,
+    res: Response<GetPokemon$Id.$200>,
+  ): Promise<typeof res> {
+    const doc = await getById(req.params.id)
 
     if (!doc) {
       throw new NotFoundError()
@@ -65,18 +81,24 @@ export class PokemonController implements CRUDController {
 
   @Patch(':id')
   @Middleware(validate)
-  public async patch (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Pokemon$Id.Patch.PathParameters = req.params as any
-    const doc = await getById(params.id)
+  public async patch (
+    req: Request<
+      Params<PatchPokemon$Id.PathParameters>,
+      PatchPokemon$Id.$200,
+      PatchPokemon$Id.RequestBody
+    >,
+    res: Response<PatchPokemon$Id.$200>,
+  ): Promise<typeof res> {
+    const doc = await getById(req.params.id)
 
     if (!doc) {
       throw new NotFoundError()
     }
 
-    const updated = await updateOne(params.id, req.body)
+    const updated = await updateOne(req.params.id, req.body)
 
     if (!updated) {
-      throw new UnhandledError()
+      throw new ServerError()
     }
 
     return res.status(OK).json(view(updated))
@@ -84,15 +106,20 @@ export class PokemonController implements CRUDController {
 
   @Delete(':id')
   @Middleware(validate)
-  public async delete (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Pokemon$Id.Get.PathParameters = req.params as any
-    const doc = await getById(params.id)
+  public async delete (
+    req: Request<
+      Params<DeletePokemon$Id.PathParameters>,
+      undefined
+    >,
+    res: Response<undefined>,
+  ): Promise<typeof res> {
+    const doc = await getById(req.params.id)
 
     if (!doc) {
       throw new NotFoundError()
     }
 
-    await deleteOne(params.id)
+    await deleteOne(req.params.id)
 
     return res.status(NO_CONTENT).send()
   }

@@ -28,7 +28,7 @@ import { validate } from 'openapi-validator-middleware'
 import { CRUDController } from './CRUD'
 import {
   NotFoundError,
-  UnhandledError,
+  ServerError,
   BadRequestError,
 } from '@utils/error'
 import {
@@ -118,7 +118,7 @@ export class TypeController implements CRUDController {
     const updated = await updateOne(params.name, body)
 
     if (!updated) {
-      throw new UnhandledError()
+      throw new ServerError()
     }
 
     return res.status(OK).json(view(updated))

@@ -29,4 +29,4 @@ export const PokemonModel = getModelForClass(Pokemon, {
 
 export type PokemonDoc = DocumentType<Pokemon>
 
-export type PokemonView = Components.Schemas.PokemonView
+export type PokemonView = Schemas.PokemonView

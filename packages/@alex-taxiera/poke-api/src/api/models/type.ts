@@ -24,4 +24,4 @@ export const TypeModel = getModelForClass(Type)
 
 export type TypeDoc = DocumentType<Type>
 
-export type TypeView = Components.Schemas.TypeView
+export type TypeView = Schemas.TypeView

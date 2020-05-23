@@ -41,4 +41,4 @@ export const SpeciesModel = getModelForClass(Species, {
 
 export type SpeciesDoc = DocumentType<Species>
 
-export type SpeciesView = Components.Schemas.SpeciesView
+export type SpeciesView = Schemas.SpeciesView
