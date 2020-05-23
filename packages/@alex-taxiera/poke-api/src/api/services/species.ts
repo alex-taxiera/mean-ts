@@ -44,7 +44,7 @@ export async function getByNumber (
 }
 
 export async function createOne (
-  data: Paths.Species.Post.RequestBody,
+  data: PostSpecies.RequestBody,
 ): Promise<SpeciesDoc> {
   const {
     type1,
@@ -74,7 +74,7 @@ export async function createOne (
 
 export async function updateOne (
   num: number | string,
-  data: Paths.Species$Number.Patch.RequestBody,
+  data: PatchSpecies$Number.RequestBody,
 ): Promise<SpeciesDoc | undefined> {
   const number = typeof num === 'number' ? num : parseInt(num)
 

@@ -6,11 +6,11 @@
   "scripts": {
     "start": "ts-node --files -r tsconfig-paths/register src/index.ts",
     "lint": "eslint src/**/*.ts",
-    "dev": "ts-node-dev -r tsconfig-paths/register .rc/index.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
     "debug": "node --inspect-brk=0.0.0.0:9229 -r ts-node/register -r tsconfig-paths/register src/index.ts",
     "swagger:validate": "swagger-cli validate doc/index.yml",
     "swagger:bundle": "swagger-cli bundle -t yaml -o docs.yml doc/index.yml",
-    "types:generate": "dtsgen -o index.d.ts docs.yml"
+    "types:generate": "ts-node src/bin/dts-gen.ts"
   },
   "files": [
     "index.d.ts",

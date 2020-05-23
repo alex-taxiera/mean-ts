@@ -40,7 +40,10 @@ import {
 export class TypeController implements CRUDController {
 
   @Get()
-  public async getAll (req: Request, res: Response): Promise<Response> {
+  public async getAll (
+    req: Request,
+    res: Response<GetType.$200>,
+  ): Promise<typeof res> {
     const docs = await getAll()
 
     return res.status(OK).json(view(docs))
@@ -48,8 +51,17 @@ export class TypeController implements CRUDController {
 
   @Post()
   @Middleware(validate)
-  public async post (req: Request, res: Response): Promise<Response> {
-    const body: Paths.Type.Post.RequestBody = req.body
+  public async post (
+    req: Request<
+      Params,
+      PostType.$200,
+      PostType.RequestBody
+    >,
+    res: Response<PostType.$200>,
+  ): Promise<typeof res> {
+    const {
+      body,
+    } = req
 
     if (await getByName(body.name)) {
       throw new BadRequestError('Type already exists')
@@ -62,8 +74,17 @@ export class TypeController implements CRUDController {
 
   @Get(':name')
   @Middleware(validate)
-  public async get (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Type$Name.Get.PathParameters = req.params as any
+  public async get (
+    req: Request<
+      Params<GetType$Name.PathParameters>,
+      GetType$Name.$200
+    >,
+    res: Response<GetType$Name.$200>,
+  ): Promise<typeof res> {
+    const {
+      params,
+    } = req
+
     const doc = await getByName(params.name)
 
     if (!doc) {
@@ -75,15 +96,26 @@ export class TypeController implements CRUDController {
 
   @Patch(':name')
   @Middleware(validate)
-  public async patch (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Type$Name.Patch.PathParameters = req.params as any
+  public async patch (
+    req: Request<
+      Params<PatchType$Name.PathParameters>,
+      PatchType$Name.$200,
+      PatchType$Name.RequestBody
+    >,
+    res: Response<PatchType$Name.$200>,
+  ): Promise<typeof res> {
+    const {
+      params,
+      body,
+    } = req
+
     const doc = await getByName(params.name)
 
     if (!doc) {
       throw new NotFoundError()
     }
 
-    const updated = await updateOne(params.name, req.body)
+    const updated = await updateOne(params.name, body)
 
     if (!updated) {
       throw new UnhandledError()
@@ -94,8 +126,17 @@ export class TypeController implements CRUDController {
 
   @Delete(':name')
   @Middleware(validate)
-  public async delete (req: Request, res: Response): Promise<Response> {
-    const params: Paths.Type$Name.Delete.PathParameters = req.params as any
+  public async delete (
+    req: Request<
+      Params<DeleteType$Name.PathParameters>,
+      undefined
+    >,
+    res: Response<undefined>,
+  ): Promise<typeof res> {
+    const {
+      params,
+    } = req
+
     const doc = await getByName(params.name)
 
     if (!doc) {

@@ -5,10 +5,10 @@ import {
 
 export interface CRUDController {
 
-  getAll (req: Request, res: Response): Promise<Response>
-  post (req: Request, res: Response): Promise<Response>
-  get (req: Request, res: Response): Promise<Response>
-  patch (req: Request, res: Response): Promise<Response>
-  delete (req: Request, res: Response): Promise<Response>
+  getAll (req: Request, res: Response): Promise<typeof res>
+  post (req: Request, res: Response): Promise<typeof res>
+  get (req: Request, res: Response): Promise<typeof res>
+  patch (req: Request, res: Response): Promise<typeof res>
+  delete (req: Request, res: Response): Promise<typeof res>
 
 }

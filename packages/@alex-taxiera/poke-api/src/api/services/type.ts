@@ -21,7 +21,7 @@ export async function getByName (
 }
 
 export async function createOne (
-  data: Paths.Type.Post.RequestBody,
+  data: PostType.RequestBody,
 ): Promise<TypeDoc> {
   const model = await TypeModel.create(data)
 
@@ -30,7 +30,7 @@ export async function createOne (
 
 export async function updateOne (
   name: string,
-  data: Components.Schemas.TypePartial,
+  data: PatchType$Name.RequestBody,
 ): Promise<TypeDoc | undefined> {
   const model = await TypeModel.findOneAndUpdate({
     name,

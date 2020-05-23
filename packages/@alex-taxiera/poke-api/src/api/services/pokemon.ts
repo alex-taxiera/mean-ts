@@ -65,7 +65,7 @@ export async function getById (
 }
 
 export async function createOne (
-  data: Paths.Pokemon.Post.RequestBody,
+  data: PostPokemon.RequestBody,
 ): Promise<PokemonDoc> {
   const {
     species,
@@ -88,7 +88,7 @@ export async function createOne (
 
 export async function updateOne (
   id: string,
-  data: Paths.Pokemon$Id.Patch.RequestBody,
+  data: PatchPokemon$Id.RequestBody,
 ): Promise<PokemonDoc | undefined> {
   const {
     species,
