@@ -8,8 +8,7 @@ parserOptions:
   sourceType: module
   project:
     - ./tsconfig.json
-    - ./packages/**/**/tsconfig.base.json
-    - ./packages/**/projects/**/tsconfig.lib.json
+    - ./packages/**/tsconfig.json
 plugins:
   - modules-newline
 extends:

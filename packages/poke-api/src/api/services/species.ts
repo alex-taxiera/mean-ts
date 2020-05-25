@@ -6,6 +6,10 @@ import {
 import { getByName as getTypeByName } from './type'
 import { BadRequestError } from '@utils/error'
 import { populateWithDeleted } from '@utils/populateWithDeleted'
+import {
+  PatchSpecies$Number,
+  PostSpecies,
+} from '@poke-app/api'
 
 export function populate (species: SpeciesDoc): Promise<SpeciesDoc>
 export function populate (

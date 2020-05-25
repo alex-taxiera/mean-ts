@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "services": {
+    "api-services": {
       "projectType": "library",
-      "root": "projects/services",
-      "sourceRoot": "projects/services/src",
+      "root": "projects/api-services",
+      "sourceRoot": "projects/api-services/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/services/tsconfig.lib.json",
-            "project": "projects/services/ng-package.json"
+            "tsConfig": "projects/api-services/tsconfig.lib.json",
+            "project": "projects/api-services/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/services/tsconfig.lib.prod.json"
+              "tsConfig": "projects/api-services/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/services/src/test.ts",
-            "tsConfig": "projects/services/tsconfig.spec.json",
-            "karmaConfig": "projects/services/karma.conf.js"
+            "main": "projects/api-services/src/test.ts",
+            "tsConfig": "projects/api-services/tsconfig.spec.json",
+            "karmaConfig": "projects/api-services/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/services/tsconfig.lib.json",
-              "projects/services/tsconfig.spec.json"
+              "projects/api-services/tsconfig.lib.json",
+              "projects/api-services/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -43,5 +43,5 @@
         }
       }
     }},
-  "defaultProject": "services"
+  "defaultProject": "api-services"
 }

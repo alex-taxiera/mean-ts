@@ -3,6 +3,10 @@ import {
   TypeModel,
   Type,
 } from '@api/models/type'
+import {
+  PostType,
+  PatchType$Name,
+} from '@poke-app/api'
 
 export async function getAll (): Promise<Array<TypeDoc>> {
   const models = await TypeModel.find()

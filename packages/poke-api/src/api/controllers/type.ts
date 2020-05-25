@@ -34,6 +34,13 @@ import {
 import {
   Params,
 } from '@utils/params'
+import {
+  GetType,
+  PostType,
+  GetType$Name,
+  PatchType$Name,
+  DeleteType$Name,
+} from '@poke-app/api'
 
 @Controller('type')
 @ClassWrapper(async)

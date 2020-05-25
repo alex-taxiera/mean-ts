@@ -1,11 +1,12 @@
 {
-  "name": "@poke-app/ng-shared-services",
+  "name": "@poke-app/ng-api-services",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^10.0.0-rc.0",
     "@angular/core": "^10.0.0-rc.0"
   },
   "dependencies": {
+    "@poke-app/api": "^1.0.0",
     "tslib": "^2.0.0"
   }
 }

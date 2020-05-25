@@ -24,7 +24,7 @@ import { FilterQuery } from 'mongoose'
   'update',
   'updateOne',
   'updateMany',
-], function () {
+], function (): void {
   if (this.getQuery().isDeleted === undefined) {
     this.where('isDeleted').equals(false)
   }

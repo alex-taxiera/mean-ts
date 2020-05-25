@@ -32,6 +32,13 @@ import {
   BadRequestError,
 } from '@utils/error'
 import { Params } from '@utils/params'
+import {
+  GetSpecies,
+  PostSpecies,
+  GetSpecies$Number,
+  PatchSpecies$Number,
+  DeleteSpecies$Number,
+} from '@poke-app/api'
 
 @Controller('species')
 @ClassWrapper(async)

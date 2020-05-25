@@ -31,6 +31,13 @@ import {
   ServerError,
 } from '@utils/error'
 import { Params } from '@utils/params'
+import {
+  GetPokemon,
+  PostPokemon,
+  GetPokemon$Id,
+  PatchPokemon$Id,
+  DeletePokemon$Id,
+} from '@poke-app/api'
 
 @Controller('pokemon')
 @ClassWrapper(async)

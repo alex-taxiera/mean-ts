@@ -8,6 +8,12 @@
     },
     {
       "path": "./projects/services/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/api-services/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/api-services/tsconfig.spec.json"
     }
 ]
 }

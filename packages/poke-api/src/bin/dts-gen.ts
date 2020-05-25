@@ -5,6 +5,8 @@ import dtsGenerator, {
   SchemaId,
 } from 'dtsgenerator'
 
+import * as pkg from '../../package.json'
+
 const filePath = 'docs.yml'
 
 function typeNameConvertor (id: SchemaId): string[] {
@@ -31,6 +33,14 @@ async function main (): Promise<void> {
     typeNameConvertor,
     indentSize: 2,
   })
-  fs.writeFileSync('index.d.ts', result.replace(/;/gm, ''))
+  const out = 'declare module \'@poke-app/api\' {' +
+  ('\n' + result)
+    .replace(/;/gm, '')
+    .replace(/declare\s/gm, '')
+    .replace(/\n$/m, '')
+    .replace(/\n/gm, '\n  ') +
+  '\n}\n'
+
+  fs.writeFileSync('index.d.ts', out)
 }
 main()

@@ -12,6 +12,10 @@ import {
   ServerError,
 } from '@utils/error'
 import { isDocument } from '@typegoose/typegoose'
+import {
+  PostPokemon,
+  PatchPokemon$Id,
+} from '@poke-app/api'
 
 export function populate (pokemon: PokemonDoc): Promise<PokemonDoc>
 export function populate (

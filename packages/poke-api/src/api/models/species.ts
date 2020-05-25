@@ -7,6 +7,7 @@ import {
 
 import { Type } from './type'
 import { Base } from './base'
+import { Schemas } from '@poke-app/api'
 
 export class Species extends Base {
 

@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -23,6 +24,10 @@
       "services": [
         "dist/services/services",
         "dist/services"
+      ],
+      "api-services": [
+        "dist/api-services/api-services",
+        "dist/api-services"
       ]
     }
   },
