@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import {
   Injectable,
-  Inject,
 } from '@angular/core'
 import { Observable } from 'rxjs'
 
@@ -13,15 +12,13 @@ import {
   DeleteType$Name,
 } from '@poke-app/api'
 
-import { SERVICE_URL_TOKEN } from '../util/types'
-
 @Injectable({
   providedIn: 'root',
 })
 export class TypeService {
 
   constructor (
-    @Inject(SERVICE_URL_TOKEN) private readonly url: string,
+    private readonly url: string,
     private readonly http: HttpClient,
   ) {}
 

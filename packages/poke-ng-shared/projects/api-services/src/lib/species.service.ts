@@ -1,6 +1,5 @@
 import {
   Injectable,
-  Inject,
 } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
@@ -13,15 +12,13 @@ import {
   DeleteSpecies$Number,
 } from '@poke-app/api'
 
-import { SERVICE_URL_TOKEN } from '../util/types'
-
 @Injectable({
   providedIn: 'root',
 })
 export class SpeciesService {
 
   constructor (
-    @Inject(SERVICE_URL_TOKEN) private readonly url: string,
+    private readonly url: string,
     private readonly http: HttpClient,
   ) {}
 
