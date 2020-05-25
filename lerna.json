@@ -1,7 +1,8 @@
 {
   "packages": [
     "packages/*",
-    "packages/@*/*"
+    "packages/@*/*",
+    "packages/poke-ng-shared/projects/*"
   ],
   "tagVersionPrefix": "",
   "version": "independent"

@@ -6,7 +6,10 @@ globals:
 parserOptions:
   ecmaVersion: 2018
   sourceType: module
-  project: ./tsconfig.json
+  project:
+    - ./tsconfig.json
+    - ./packages/**/**/tsconfig.base.json
+    - ./packages/**/projects/**/tsconfig.lib.json
 plugins:
   - modules-newline
 extends:
