@@ -42,6 +42,47 @@
           }
         }
       }
-    }},
+    },
+    "config-service": {
+      "projectType": "library",
+      "root": "projects/config-service",
+      "sourceRoot": "projects/config-service/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/config-service/tsconfig.lib.json",
+            "project": "projects/config-service/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/config-service/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/config-service/src/test.ts",
+            "tsConfig": "projects/config-service/tsconfig.spec.json",
+            "karmaConfig": "projects/config-service/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/config-service/tsconfig.lib.json",
+              "projects/config-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "api-services"
 }
