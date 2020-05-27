@@ -5,8 +5,6 @@ import dtsGenerator, {
   SchemaId,
 } from 'dtsgenerator'
 
-import * as pkg from '../../package.json'
-
 const filePath = 'docs.yml'
 
 function typeNameConvertor (id: SchemaId): string[] {

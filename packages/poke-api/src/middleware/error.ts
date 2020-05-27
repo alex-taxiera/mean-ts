@@ -9,7 +9,6 @@ import {
   NextFunction,
 } from 'express'
 
-import { UnauthorizedError } from 'express-jwt'
 import { Logger } from '@overnightjs/logger'
 import { InputValidationError } from 'openapi-validator-middleware'
 import { ErrorResponse } from '@utils/error'
@@ -25,14 +24,6 @@ export function logErrorAndStop (
     res
       .status(error.code)
       .json(error)
-  } else if (error instanceof UnauthorizedError) {
-    Logger.Warn(`Unauthorized: ${error.message}`)
-    res
-      .status(UNAUTHORIZED)
-      .json({
-        message: error.message,
-        code: error.code,
-      })
   } else if (error instanceof InputValidationError) {
     Logger.Warn(`Validation Error: ${error.message}`)
     res
