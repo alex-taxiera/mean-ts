@@ -4,7 +4,8 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "lerna run lint",
-    "preinstall": "npx lerna clean --yes",
+    "clean": "lerna clean --yes && rm -rf ./node_modules",
+    "reinstall": "npm run clean && npm i",
     "postinstall": "lerna bootstrap --hoist"
   },
   "devDependencies": {
