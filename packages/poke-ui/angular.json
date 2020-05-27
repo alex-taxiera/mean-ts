@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/poke-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -86,6 +87,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
+            "preserveSymlinks": true,
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
