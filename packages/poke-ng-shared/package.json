@@ -4,7 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run build:*",
+    "build:api-services": "ng build api-services",
+    "build:config-service": "ng build config-service",
+    "watch:api-services": "npm run build:api-services -- --watch",
+    "watch:config-service": "npm run build:config-service -- --watch",
     "test": "ng test",
     "lint": "npx eslint projects/*/src",
     "e2e": "ng e2e"
