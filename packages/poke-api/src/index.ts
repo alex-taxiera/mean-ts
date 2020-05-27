@@ -2,6 +2,7 @@ import path from 'path'
 import fs from 'fs'
 
 import bodyParser from 'body-parser'
+import cors from 'cors'
 import {
   Request,
   Response,
@@ -33,6 +34,7 @@ class NormalRouterServer extends Server {
 
   constructor () {
     super(true)
+    this.app.use(cors())
     this.app.use(bodyParser.json())
     this.app.use(bodyParser.urlencoded({ extended: true }))
     super.addControllers([
