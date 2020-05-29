@@ -16,6 +16,7 @@ import {
   PostPokemon,
   PatchPokemon$Id,
 } from '@poke-app/api'
+import { populateWithDeleted } from '@utils/populateWithDeleted'
 
 export function populate (pokemon: PokemonDoc): Promise<PokemonDoc>
 export function populate (
@@ -24,10 +25,12 @@ export function populate (
 export function populate (
   pokemon: PokemonDoc | Array<PokemonDoc>,
 ): Promise<PokemonDoc | Array<PokemonDoc>> {
+  const populatePath = 'species'
+
   return Array.isArray(pokemon)
     ? Promise.all(
       pokemon.map(
-        (p) => p.populate('species').execPopulate()
+        (p) => populateWithDeleted(p, populatePath)
           .then(async (p1) => {
             if (!isDocument(p1.species)) {
               throw new ServerError('ripip')
@@ -37,7 +40,7 @@ export function populate (
             return p1
           }),
       ),
-    ) : pokemon.populate('species').execPopulate()
+    ) : populateWithDeleted(pokemon, populatePath)
       .then(async (p) => {
         if (!isDocument(p.species)) {
           throw new ServerError('ripip')
