@@ -1,6 +1,18 @@
-<div>
-  hello
-  <br>
-  {{ test | json }}
-</div>
-<router-outlet></router-outlet>
+<header>
+  <div class="background">
+    <div class="container">
+      <h1 routerLink="" class="clickable">
+        Poke App
+      </h1>
+      <pk-horizontal-nav></pk-horizontal-nav>
+    </div>
+  </div>
+</header>
+<main>
+  <article>
+    <router-outlet></router-outlet>
+  </article>
+</main>
+<footer>
+  Alex Taxiera &copy;{{ year }} | <a href="https://github.com/alex-taxiera/mean-ts">&lt;Code/&gt;</a>
+</footer>

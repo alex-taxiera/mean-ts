@@ -1,0 +1,6 @@
+<div *ngIf="type$ | async as type">
+  <h4>
+    Name: {{ type.name | titlecase }}
+  </h4>
+  <i>{{ type.flavorText }}</i>
+</div>

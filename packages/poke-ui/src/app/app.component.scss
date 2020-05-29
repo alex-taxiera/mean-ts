@@ -1,0 +1,59 @@
+@use 'background';
+@use 'border';
+@use 'flex';
+@use 'layout';
+@use 'pk-color' as color;
+
+:host {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  header {
+    position: sticky;
+    top: 0;
+    background: color.$background;
+
+    h1 {
+      color: color.$primary;
+    }
+
+    & > .background {
+      @extend %center-container;
+      border-bottom: solid 2px;
+      @include background.rgba(#fff, 0.1);
+      @include border.rgba(#fff, 0.05);
+
+      & > .container {
+        @extend %content-area;
+        @extend %center-container;
+        justify-content: space-between;
+
+        & > pk-horizontal-nav {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  main {
+    flex: 1 0 auto;
+    @extend %center-container;
+    flex-flow: column;
+
+    article {
+      @extend %content-area;
+      flex: 1;
+    }
+  }
+
+  footer {
+    text-align: center;
+    flex-shrink: 0;
+    padding: 0.2em;
+    border-top: solid 1px;
+    @include background.rgba(#fff, 0.1);
+    @include border.rgba(#fff, 0.05);
+  }
+}

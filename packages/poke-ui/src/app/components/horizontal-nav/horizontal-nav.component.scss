@@ -1,0 +1,6 @@
+@use 'flex';
+
+:host {
+  @extend %center-container;
+  justify-content: space-evenly;
+}
