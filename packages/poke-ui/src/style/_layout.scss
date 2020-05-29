@@ -1,0 +1,15 @@
+$content-width: 1024px;
+$break-one: $content-width / 0.8;
+$break-two: 600px;
+
+%content-area {
+  min-width: $content-width;
+
+  @media only screen and (max-width: $break-one) {
+    min-width: 80%;
+  }
+
+  @media only screen and (max-width: $break-two) {
+    min-width: 90%;
+  }
+}

@@ -1,0 +1,4 @@
+@mixin rgba($hexcolor, $opacity) {
+  border-color: $hexcolor;
+  border-color: rgba($hexcolor, $opacity);
+}

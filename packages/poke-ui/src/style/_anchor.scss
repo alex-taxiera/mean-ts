@@ -1,0 +1,11 @@
+@use 'pk-color' as color;
+@use 'transition';
+
+a {
+  @extend %color-transition;
+  color: color.$secondary;
+
+  &:hover {
+    color: color.$primary;
+  }
+}

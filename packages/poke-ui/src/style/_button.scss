@@ -1,0 +1,18 @@
+@use 'pk-color' as color;
+@use 'transition';
+
+.clickable,
+%clickable {
+  cursor: pointer;
+}
+
+.btn-primary {
+  @extend %clickable;
+  @extend %color-transition;
+  background-color: color.$tertiary;
+  padding: 0.3em 1.2em;
+
+  &:hover {
+    background-color: color.$primary;
+  }
+}
