@@ -84,5 +84,8 @@
       }
     }
   },
-  "defaultProject": "api-services"
+  "defaultProject": "api-services",
+  "cli": {
+    "analytics": false
+  }
 }

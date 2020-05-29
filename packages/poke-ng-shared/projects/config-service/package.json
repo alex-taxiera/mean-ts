@@ -1,6 +1,12 @@
 {
   "name": "@poke-app/ng-config-service",
   "version": "1.0.0",
+  "scripts": {
+    "lib:watch": "ng build --watch"
+  },
+  "publishConfig": {
+    "directory": "dist"
+  },
   "peerDependencies": {
     "@angular/common": "^10.0.0-rc.0",
     "@angular/core": "^10.0.0-rc.0"
