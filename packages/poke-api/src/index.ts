@@ -13,6 +13,8 @@ import {
   Logger,
   LoggerModes,
 } from '@overnightjs/logger'
+
+import config from 'config'
 import { mongoose } from '@typegoose/typegoose'
 
 import { init as initValidator } from 'openapi-validator-middleware'
@@ -42,11 +44,13 @@ class NormalRouterServer extends Server {
     ])
   }
 
-  public start (port?: number): void {
-    port = port || 3000
+  public start (): void {
+    const port = 3000
+
     this.app.get('*', (_: Request, res: Response) => {
       res.send(this.FRONT_END_MSG)
     })
+
     this.app.listen(port, () => {
       Logger.Imp(this.START_MSG + port)
     })
@@ -68,7 +72,7 @@ async function setup (): Promise<void> {
     },
   })
 
-  await mongoose.connect('mongodb://localhost/poke-db', {
+  await mongoose.connect(config.get('db.uri'), {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
@@ -77,5 +81,5 @@ async function setup (): Promise<void> {
 
 setup().then(() => {
   const server = new NormalRouterServer()
-  server.start(3000)
+  server.start()
 })
