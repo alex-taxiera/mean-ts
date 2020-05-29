@@ -107,7 +107,7 @@ export class SpeciesController implements CRUDController {
       throw new NotFoundError()
     }
 
-    const updated = await updateOne(req.params.number, req.body)
+    const updated = await updateOne(doc, req.body)
 
     if (!updated) {
       throw new ServerError()
@@ -131,7 +131,7 @@ export class SpeciesController implements CRUDController {
       throw new NotFoundError()
     }
 
-    await deleteOne(req.params.number)
+    await deleteOne(doc)
 
     return res.status(NO_CONTENT).send()
   }

@@ -1,7 +1,6 @@
 import {
   PokemonDoc,
   PokemonModel,
-  Pokemon,
 } from '@api/models/pokemon'
 import {
   getByNumber as getSpeciesByNumber,
@@ -58,10 +57,10 @@ export async function getAll (): Promise<Array<PokemonDoc>> {
 }
 
 export async function getById (
-  id: string,
+  _id: string,
 ): Promise<PokemonDoc | undefined> {
   const model = await PokemonModel.findOne({
-    id,
+    _id,
   })
 
   if (model) {
@@ -94,40 +93,42 @@ export async function createOne (
 }
 
 export async function updateOne (
-  id: string,
+  pokemon: PokemonDoc,
   data: PatchPokemon$Id.RequestBody,
-): Promise<PokemonDoc | undefined> {
+): Promise<PokemonDoc> {
   const {
     species,
+    nickname,
     ...rest
   } = data
 
-  const patch: Partial<Pokemon> = {
-    ...rest,
+  if (nickname) {
+    pokemon.set({
+      nickname,
+    })
+  } else if (nickname === '') {
+    pokemon.set({
+      nickname: undefined,
+    })
   }
 
   if (species) {
-    patch.species = await getSpeciesByNumber(species)
-    if (!patch.species) {
+    const s = await getSpeciesByNumber(species)
+    if (!s) {
       throw new BadRequestError('Unknown Species')
     }
+    pokemon.set({
+      species: s,
+    })
   }
 
-  const model = await PokemonModel.findOneAndUpdate({
-    id,
-  }, patch, { new: true })
+  pokemon.set(rest)
 
-  if (model) {
-    return populate(model)
-  }
-
-  return model ?? undefined
+  return populate(await pokemon.save())
 }
 
 export async function deleteOne (
-  id: string,
+  pokemon: PokemonDoc,
 ): Promise<void> {
-  await PokemonModel.findOneAndMarkDeleted<Pokemon>({
-    id,
-  })
+  await pokemon.markDeleted()
 }

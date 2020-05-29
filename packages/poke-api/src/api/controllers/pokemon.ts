@@ -102,7 +102,7 @@ export class PokemonController implements CRUDController {
       throw new NotFoundError()
     }
 
-    const updated = await updateOne(req.params.id, req.body)
+    const updated = await updateOne(doc, req.body)
 
     if (!updated) {
       throw new ServerError()
@@ -126,7 +126,7 @@ export class PokemonController implements CRUDController {
       throw new NotFoundError()
     }
 
-    await deleteOne(req.params.id)
+    await deleteOne(doc)
 
     return res.status(NO_CONTENT).send()
   }

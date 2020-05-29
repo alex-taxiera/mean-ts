@@ -4,8 +4,6 @@ import {
   pre,
   DocumentType,
 } from '@typegoose/typegoose'
-import { ModelType } from '@typegoose/typegoose/lib/types'
-import { FilterQuery } from 'mongoose'
 
 @modelOptions({
   schemaOptions: {
@@ -34,16 +32,14 @@ export class Base {
   @prop({ default: false })
   public isDeleted!: boolean
 
-  public static async findOneAndMarkDeleted<T extends Base = Base> (
-    this: ModelType<any>,
-    filter: FilterQuery<any>,
-  ): Promise<DocumentType<T> | undefined> {
-    const model = await this.findOneAndUpdate({
-      ...filter,
-      isDeleted: false,
-    }, { isDeleted: true }, { new: true })
+  public async markDeleted<T = this> (
+    this: DocumentType<T>,
+  ): Promise<DocumentType<T>> {
+    this.set({
+      isDeleted: true,
+    })
 
-    return model ?? undefined
+    return this.save() as Promise<DocumentType<T>> // shut up
   }
 
 }

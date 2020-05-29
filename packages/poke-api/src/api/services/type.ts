@@ -1,7 +1,6 @@
 import {
   TypeDoc,
   TypeModel,
-  Type,
 } from '@api/models/type'
 import {
   PostType,
@@ -32,21 +31,17 @@ export async function createOne (
   return model
 }
 
-export async function updateOne (
-  name: string,
+export function updateOne (
+  type: TypeDoc,
   data: PatchType$Name.RequestBody,
-): Promise<TypeDoc | undefined> {
-  const model = await TypeModel.findOneAndUpdate({
-    name,
-  }, data, { new: true })
+): Promise<TypeDoc> {
+  type.set(data)
 
-  return model ?? undefined
+  return type.save()
 }
 
 export async function deleteOne (
-  name: string,
+  type: TypeDoc,
 ): Promise<void> {
-  await TypeModel.findOneAndMarkDeleted<Type>({
-    name,
-  })
+  await type.markDeleted()
 }

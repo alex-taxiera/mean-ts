@@ -71,52 +71,50 @@ export async function createOne (
 }
 
 export async function updateOne (
-  number: number,
+  species: SpeciesDoc,
   data: PatchSpecies$Number.RequestBody,
-): Promise<SpeciesDoc | undefined> {
-  const {
-    type1,
-    type2,
-    ...rest
-  } = data
-
-  const patch: Partial<Species> = {
-    ...rest,
-  }
-
-  if (type1) {
-    patch.type1 = await getTypeByName(type1)
-    if (!patch.type1) {
-      throw new BadRequestError(`Bad type: "${type1}"`)
-    }
-  }
-
-  if (type2) {
-    patch.type2 = await getTypeByName(type2)
-    if (!patch.type2) {
-      throw new BadRequestError(`Bad type: "${type2}"`)
-    }
-  }
-
-  if (patch.number && await getByNumber(patch.number)) {
+): Promise<SpeciesDoc> {
+  if (data.number && await getByNumber(data.number)) {
     throw new BadRequestError('Species already exists')
   }
 
-  const model = await SpeciesModel.findOneAndUpdate({
-    number,
-  }, patch, { new: true })
+  const {
+    type1: t1,
+    type2: t2,
+    ...rest
+  } = data
 
-  if (model) {
-    return populate(model)
+  if (t1) {
+    const type1 = await getTypeByName(t1)
+    if (!type1) {
+      throw new BadRequestError(`Bad type: "${t1}"`)
+    }
+    species.set({
+      type1,
+    })
   }
 
-  return model ?? undefined
+  if (t2) {
+    const type2 = await getTypeByName(t2)
+    if (!type2) {
+      throw new BadRequestError(`Bad type: "${t2}"`)
+    }
+    species.set({
+      type2,
+    })
+  } else if (t2 === '') {
+    species.set({
+      type2: undefined,
+    })
+  }
+
+  species.set(rest)
+
+  return populate(await species.save())
 }
 
 export async function deleteOne (
-  number: number,
+  species: SpeciesDoc,
 ): Promise<void> {
-  await SpeciesModel.findOneAndMarkDeleted<Species>({
-    number,
-  })
+  await species.markDeleted()
 }

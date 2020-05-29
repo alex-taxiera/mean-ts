@@ -122,7 +122,7 @@ export class TypeController implements CRUDController {
       throw new NotFoundError()
     }
 
-    const updated = await updateOne(params.name, body)
+    const updated = await updateOne(doc, body)
 
     if (!updated) {
       throw new ServerError()
@@ -150,7 +150,7 @@ export class TypeController implements CRUDController {
       throw new NotFoundError()
     }
 
-    await deleteOne(params.name)
+    await deleteOne(doc)
 
     return res.status(NO_CONTENT).send()
   }
