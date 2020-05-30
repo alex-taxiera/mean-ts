@@ -1,6 +1,5 @@
 import {
   INTERNAL_SERVER_ERROR,
-  UNAUTHORIZED,
   BAD_REQUEST,
 } from 'http-status-codes'
 import {
@@ -33,7 +32,7 @@ export function logErrorAndStop (
         errors: error.errors,
       })
   } else {
-    Logger.Err(`UNHANDLED ERROR: ${error.stack}`)
+    Logger.Err(`UNHANDLED ERROR: ${error.stack ?? ''}`)
     res
       .status(INTERNAL_SERVER_ERROR)
       .json({

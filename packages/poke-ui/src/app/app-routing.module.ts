@@ -12,12 +12,12 @@ import { TypeDetailsComponent } from './pages/type-details/type-details.componen
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'home',
     redirectTo: '',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'types',
@@ -28,14 +28,14 @@ const routes: Routes = [
       },
       {
         path: ':name',
-        component: TypeDetailsComponent
-      }
-    ]
+        component: TypeDetailsComponent,
+      },
+    ],
   },
   {
     path: '**',
-    component: NotFoundComponent
-  }
+    component: NotFoundComponent,
+  },
 ]
 
 @NgModule({

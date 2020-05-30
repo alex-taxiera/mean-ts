@@ -1,25 +1,29 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing'
 
-import { TypeDetailComponent } from './type-detail.component';
+import { TypeDetailComponent } from './type-detail.component'
 
 describe('TypeDetailComponent', () => {
-  let component: TypeDetailComponent;
-  let fixture: ComponentFixture<TypeDetailComponent>;
+  let component: TypeDetailComponent
+  let fixture: ComponentFixture<TypeDetailComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TypeDetailComponent ]
+      declarations: [ TypeDetailComponent ],
     })
-    .compileComponents();
-  }));
+      .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TypeDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(TypeDetailComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

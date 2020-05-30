@@ -1,25 +1,29 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing'
 
-import { HorizontalNavComponent } from './horizontal-nav.component';
+import { HorizontalNavComponent } from './horizontal-nav.component'
 
 describe('HorizontalNavComponent', () => {
-  let component: HorizontalNavComponent;
-  let fixture: ComponentFixture<HorizontalNavComponent>;
+  let component: HorizontalNavComponent
+  let fixture: ComponentFixture<HorizontalNavComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HorizontalNavComponent ]
+      declarations: [ HorizontalNavComponent ],
     })
-    .compileComponents();
-  }));
+      .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HorizontalNavComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(HorizontalNavComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

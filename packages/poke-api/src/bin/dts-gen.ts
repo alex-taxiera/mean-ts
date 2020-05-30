@@ -25,6 +25,7 @@ function typeNameConvertor (id: SchemaId): string[] {
 }
 
 async function main (): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const content = jsYaml.safeLoad(fs.readFileSync(filePath, 'utf-8'))
   const result = await dtsGenerator({
     contents: [ content ],
@@ -41,4 +42,4 @@ async function main (): Promise<void> {
 
   fs.writeFileSync('index.d.ts', out)
 }
-main()
+main().catch(() => undefined)

@@ -14,14 +14,20 @@ import {
 } from '@poke-app/ng-api-services'
 
 import { AppRoutingModule } from './app-routing.module'
-import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { TypesComponent } from './pages/types/types.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { TypeListComponent } from './components/type-list/type-list.component';
-import { TypeDetailsComponent } from './pages/type-details/type-details.component';
-import { TypeDetailComponent } from './components/type-detail/type-detail.component';
-import { HorizontalNavComponent } from './components/horizontal-nav/horizontal-nav.component';
+import { AppComponent } from './app.component'
+import { HomeComponent } from './pages/home/home.component'
+import { TypesComponent } from './pages/types/types.component'
+import { NotFoundComponent } from './pages/not-found/not-found.component'
+import { TypeListComponent } from './components/type-list/type-list.component'
+import {
+  TypeDetailsComponent,
+} from './pages/type-details/type-details.component'
+import {
+  TypeDetailComponent,
+} from './components/type-detail/type-detail.component'
+import {
+  HorizontalNavComponent,
+} from './components/horizontal-nav/horizontal-nav.component'
 
 @NgModule({
   declarations: [
