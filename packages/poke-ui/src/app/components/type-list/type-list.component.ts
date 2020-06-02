@@ -2,7 +2,10 @@ import {
   Component,
   OnInit,
 } from '@angular/core'
-import { Schemas } from '@poke-app/api'
+import {
+  TypeService,
+} from 'src/app/state/type/type.service'
+import { TypeQuery } from 'src/app/state/type/type.query'
 
 @Component({
   selector: 'pk-type-list',
@@ -11,16 +14,15 @@ import { Schemas } from '@poke-app/api'
 })
 export class TypeListComponent implements OnInit {
 
-  public types?: Array<Schemas.TypeView>
+  public readonly types$ = this.typeQuery.selectAll();
 
   constructor (
     private readonly typeService: TypeService,
+    private readonly typeQuery: TypeQuery,
   ) { }
 
-  ngOnInit (): void {
-    this.typeService.getAllTypes().subscribe((types) => {
-      this.types = types
-    })
+  public ngOnInit (): void {
+    this.typeService.getAll().subscribe()
   }
 
 }

@@ -67,6 +67,10 @@ rules:
     - always-multiline
   '@typescript-eslint/no-useless-constructor':
     - error
+  '@typescript-eslint/no-empty-interface':
+    - error
+    -
+      allowSingleExtends: true
   '@typescript-eslint/no-inferrable-types':
     - error
     -

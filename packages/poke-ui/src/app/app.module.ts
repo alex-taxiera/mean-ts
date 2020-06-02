@@ -28,6 +28,8 @@ import {
 import {
   HorizontalNavComponent,
 } from './components/horizontal-nav/horizontal-nav.component'
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools'
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store'
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AkitaNgRouterStoreModule,
+    environment.production ? [] : AkitaNgDevtools,
   ],
   providers: [
     {
