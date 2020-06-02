@@ -5,8 +5,8 @@ import {
 } from '@angular/core'
 import { TypeQuery } from 'src/app/state/type/type.query'
 import { Observable } from 'rxjs'
-import { TypeState } from 'src/app/state/type/type.store';
-import { TypeService } from 'src/app/state/type/type.service';
+import { TypeState } from 'src/app/state/type/type.store'
+import { TypeService } from 'src/app/state/type/type.service'
 
 @Component({
   selector: 'pk-type-detail',

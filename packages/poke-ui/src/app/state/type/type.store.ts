@@ -12,7 +12,7 @@ export interface TypeState extends EntityState<Schemas.TypeView, string> {}
 @StoreConfig({ name: 'type', idKey: 'name' })
 export class TypeStore extends EntityStore<TypeState> {
 
-  constructor() {
+  constructor () {
     super()
   }
 
