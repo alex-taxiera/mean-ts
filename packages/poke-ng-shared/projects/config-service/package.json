@@ -8,10 +8,11 @@
     "directory": "dist"
   },
   "peerDependencies": {
-    "@angular/common": "^10.0.0-rc.0",
-    "@angular/core": "^10.0.0-rc.0"
+    "@angular/common": "^10.0.0-rc.2",
+    "@angular/core": "^10.0.0-rc.2"
   },
   "dependencies": {
+    "@types/jasmine": "^3.5.10",
     "tslib": "^2.0.0"
   }
 }
