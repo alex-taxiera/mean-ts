@@ -1,6 +1,3 @@
-import path from 'path'
-import fs from 'fs'
-
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import {
@@ -9,10 +6,6 @@ import {
 } from 'express'
 
 import { Server } from '@overnightjs/core'
-import {
-  Logger,
-  LoggerModes,
-} from '@overnightjs/logger'
 
 import config from 'config'
 import { mongoose } from '@typegoose/typegoose'
@@ -20,11 +13,9 @@ import { mongoose } from '@typegoose/typegoose'
 import { init as initValidator } from 'openapi-validator-middleware'
 
 import { RootController } from '@api'
-// Set env variables
-const logFilePath = path.join(__dirname, '../sampleProject.log')
-process.env.OVERNIGHT_LOGGER_FILEPATH = logFilePath
-process.env.OVERNIGHT_LOGGER_MODE = LoggerModes.Console
-process.env.OVERNIGHT_LOGGER_RM_TIMESTAMP = 'false'
+import {
+  logger,
+} from '@utils/logger'
 
 class NormalRouterServer extends Server {
 
@@ -52,17 +43,13 @@ class NormalRouterServer extends Server {
     })
 
     this.app.listen(port, () => {
-      Logger.Imp(`${this.START_MSG}${port}`)
+      logger.info(`${this.START_MSG}${port}`)
     })
   }
 
 }
 
 async function setup (): Promise<void> {
-  try {
-    fs.unlinkSync(logFilePath)
-  } catch (e) {}
-
   initValidator('docs.yml', {
     beautifyErrors: true,
     makeOptionalAttributesNullable: true,
@@ -82,4 +69,4 @@ async function setup (): Promise<void> {
 setup().then(() => {
   const server = new NormalRouterServer()
   server.start()
-}).catch((error) => Logger.Err(error))
+}).catch((error) => logger.error(error))
