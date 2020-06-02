@@ -11,7 +11,7 @@ describe('TypeDetailComponent', () => {
   let fixture: ComponentFixture<TypeDetailComponent>
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    return TestBed.configureTestingModule({
       declarations: [ TypeDetailComponent ],
     })
       .compileComponents()
@@ -24,6 +24,6 @@ describe('TypeDetailComponent', () => {
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy()
+    return expect(component).toBeTruthy()
   })
 })

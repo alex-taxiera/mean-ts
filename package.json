@@ -4,6 +4,7 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "lerna run lint --no-bail",
+    "lint:fix": "lerna run lint --no-bail -- -- --fix",
     "bootstrap": "lerna bootstrap --hoist",
     "clean": "lerna clean --yes && rm -rf ./node_modules",
     "reinstall": "npm run clean && npm i",

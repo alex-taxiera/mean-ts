@@ -11,7 +11,7 @@ describe('TypeListComponent', () => {
   let fixture: ComponentFixture<TypeListComponent>
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    return TestBed.configureTestingModule({
       declarations: [ TypeListComponent ],
     })
       .compileComponents()
@@ -24,6 +24,6 @@ describe('TypeListComponent', () => {
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy()
+    return expect(component).toBeTruthy()
   })
 })

@@ -1,7 +1,6 @@
 import {
   SpeciesDoc,
   SpeciesModel,
-  Species,
 } from '@api/models/species'
 import { getByName as getTypeByName } from './type'
 import { BadRequestError } from '@utils/error'
@@ -58,7 +57,7 @@ export async function createOne (
   const t2 = (type2 ? await getTypeByName(type2) : null) ?? undefined
 
   if (!t1 || (type2 && !t2)) {
-    throw new BadRequestError(`Invalid Type: ${t1 ? type2 : type1}`)
+    throw new BadRequestError(`Invalid Type: ${t1 && type2 ? type2 : type1}`)
   }
 
   const model = await SpeciesModel.create({

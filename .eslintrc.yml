@@ -72,6 +72,8 @@ rules:
     - error
     -
       allowSingleExtends: true
+  '@typescript-eslint/no-empty-function':
+    - warn
   '@typescript-eslint/no-inferrable-types':
     - error
     -

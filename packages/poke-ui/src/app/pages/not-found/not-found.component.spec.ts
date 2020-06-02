@@ -11,7 +11,7 @@ describe('NotFoundComponent', () => {
   let fixture: ComponentFixture<NotFoundComponent>
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    return TestBed.configureTestingModule({
       declarations: [ NotFoundComponent ],
     })
       .compileComponents()
@@ -24,6 +24,6 @@ describe('NotFoundComponent', () => {
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy()
+    return expect(component).toBeTruthy()
   })
 })

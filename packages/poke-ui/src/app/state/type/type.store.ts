@@ -10,10 +10,4 @@ export interface TypeState extends EntityState<Schemas.TypeView, string> {}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'type', idKey: 'name' })
-export class TypeStore extends EntityStore<TypeState> {
-
-  constructor () {
-    super()
-  }
-
-}
+export class TypeStore extends EntityStore<TypeState> {}

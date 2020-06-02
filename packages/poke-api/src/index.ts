@@ -52,7 +52,7 @@ class NormalRouterServer extends Server {
     })
 
     this.app.listen(port, () => {
-      Logger.Imp(this.START_MSG + port)
+      Logger.Imp(`${this.START_MSG}${port}`)
     })
   }
 

@@ -17,7 +17,7 @@ export class TypeDetailsComponent implements OnInit {
     private readonly routerQuery: RouterQuery,
   ) {}
 
-  ngOnInit (): void {
+  public ngOnInit (): void {
   }
 
 }

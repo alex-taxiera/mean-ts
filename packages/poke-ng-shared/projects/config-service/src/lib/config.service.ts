@@ -6,11 +6,16 @@ import {
   Inject,
   Optional,
 } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import {
+  HttpClient,
+  HttpErrorResponse,
+} from '@angular/common/http'
 
 const defaultFilePath = 'assets/config/config.json'
 
 export const CONFIG_URL_TOKEN = new InjectionToken<string>('config path')
+
+export interface Settings { [key: string]: unknown }
 
 /**
  * A configuration service class that uses HttpClient to load configuration settings.
@@ -23,7 +28,7 @@ export const CONFIG_URL_TOKEN = new InjectionToken<string>('config path')
 })
 export class ConfigService {
 
-  private settings?: { [key: string]: any }
+  private settings?: Settings
 
   constructor (
     private readonly http: HttpClient,
@@ -41,17 +46,19 @@ export class ConfigService {
   public load (): () => Promise<void> {
     return (): Promise<void> => {
       return this.http
-        .get(this.url ?? defaultFilePath)
+        .get<Settings>(this.url ?? defaultFilePath)
         .toPromise()
         .then((data) => {
           this.settings = data
         })
-        .catch((error) => {
+        .catch((error: HttpErrorResponse) => {
           throw new Error(
             `ConfigService failed to load ${
               this.url ?? defaultFilePath
             }. Error: ${
-              error.message || (error.error ? error.error.message : 'undefined')
+              error.message || (
+                error.error ? (error.error as Error).message : 'undefined'
+              )
             }`,
           )
         })
@@ -64,13 +71,14 @@ export class ConfigService {
    * @param key The key of the configuration value.
    * @returns The value of the specified configuration key.
    */
-  public get<T> (key: string): T | undefined {
-    let result: T | undefined
+  public get<T = unknown> (key: string): T | undefined {
+    let result: unknown | undefined
 
     if (this.settings) {
       result = this.settings[key]
     }
-    return result
+
+    return result as T ?? undefined
   }
 
 }

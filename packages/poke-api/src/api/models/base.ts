@@ -4,6 +4,9 @@ import {
   pre,
   DocumentType,
 } from '@typegoose/typegoose'
+import {
+  FilterQuery,
+} from 'mongoose'
 
 @modelOptions({
   schemaOptions: {
@@ -23,11 +26,15 @@ import {
   'updateOne',
   'updateMany',
 ], function (): void {
-  if (this.getQuery().isDeleted === undefined) {
-    this.where('isDeleted').equals(false)
+  if (
+    (this.getQuery() as FilterQuery<DocumentType<Base>>).isDeleted === undefined
+  ) {
+    this.where('isDeleted').equals(false).catch(() => undefined)
   }
 })
 export class Base {
+
+  public id!: string;
 
   @prop({ default: false })
   public isDeleted!: boolean

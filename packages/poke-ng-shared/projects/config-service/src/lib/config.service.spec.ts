@@ -11,6 +11,6 @@ describe('ConfigService', () => {
   })
 
   it('should be created', () => {
-    expect(service).toBeTruthy()
+    return expect(service).toBeTruthy()
   })
 })

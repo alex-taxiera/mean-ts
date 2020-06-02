@@ -7,7 +7,7 @@ import { AppComponent } from './app.component'
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    return TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
       ],
@@ -20,19 +20,20 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent)
     const app = fixture.componentInstance
-    expect(app).toBeTruthy()
+    return expect(app).toBeTruthy()
   })
 
   it('should have as title \'poke-ui\'', () => {
     const fixture = TestBed.createComponent(AppComponent)
     const app = fixture.componentInstance
-    expect(app.title).toEqual('poke-ui')
+    return expect(app.title).toEqual('poke-ui')
   })
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent)
     fixture.detectChanges()
-    const compiled = fixture.nativeElement
-    expect(compiled.querySelector('.content span').textContent).toContain('poke-ui app is running!')
+    const compiled = fixture.nativeElement // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+    return expect(compiled.querySelector('.content span').textContent) // eslint-disable-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      .toContain('poke-ui app is running!')
   })
 })

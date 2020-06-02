@@ -11,7 +11,7 @@ describe('HorizontalNavComponent', () => {
   let fixture: ComponentFixture<HorizontalNavComponent>
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    return TestBed.configureTestingModule({
       declarations: [ HorizontalNavComponent ],
     })
       .compileComponents()
@@ -24,6 +24,6 @@ describe('HorizontalNavComponent', () => {
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy()
+    return expect(component).toBeTruthy()
   })
 })

@@ -23,7 +23,7 @@ export function view (
       }
 
       return {
-        id: p.id,
+        id: p._id, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
         nickname: p.nickname,
         species: speciesView(p.species),
       }
@@ -35,7 +35,7 @@ export function view (
   }
 
   return {
-    id: pokemon.id,
+    id: pokemon.id, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
     nickname: pokemon.nickname,
     species: speciesView(pokemon.species),
   }
