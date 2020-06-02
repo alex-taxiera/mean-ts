@@ -8,8 +8,7 @@ parserOptions:
   sourceType: module
   project:
     - ./tsconfig.json
-    - ./**/tsconfig.app.json
-    - ./**/projects/**/tsconfig.lib.json
+    - ./**/tsconfig.eslint.json
 plugins:
   - modules-newline
 extends:

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "lerna run build",
-    "lint": "lerna run lint",
+    "lint": "lerna run lint --no-bail",
     "bootstrap": "lerna bootstrap --hoist",
     "clean": "lerna clean --yes && rm -rf ./node_modules",
     "reinstall": "npm run clean && npm i",

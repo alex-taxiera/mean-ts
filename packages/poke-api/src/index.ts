@@ -82,4 +82,4 @@ async function setup (): Promise<void> {
 setup().then(() => {
   const server = new NormalRouterServer()
   server.start()
-})
+}).catch((error) => Logger.Err(error))
