@@ -2,7 +2,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { RouterQuery } from '@datorama/akita-ng-router-store'
 
 @Component({
   selector: 'pk-type-details',
@@ -11,13 +11,11 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class TypeDetailsComponent implements OnInit {
 
-  public readonly typeName: string
+  public readonly typeName$ = this.routerQuery.selectParams('name');
 
   constructor (
-    private readonly route: ActivatedRoute,
-  ) {
-    this.typeName = this.route.snapshot.params.name
-  }
+    private readonly routerQuery: RouterQuery,
+  ) {}
 
   ngOnInit (): void {
   }

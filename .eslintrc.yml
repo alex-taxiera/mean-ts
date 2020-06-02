@@ -6,10 +6,7 @@ globals:
 parserOptions:
   ecmaVersion: 2018
   sourceType: module
-  project:
-    - ./tsconfig.json
-    - ./**/tsconfig.app.json
-    - ./**/projects/**/tsconfig.lib.json
+  project: ./tsconfig.json
 plugins:
   - modules-newline
 extends:
@@ -68,6 +65,10 @@ rules:
     - always-multiline
   '@typescript-eslint/no-useless-constructor':
     - error
+  '@typescript-eslint/no-empty-interface':
+    - error
+    -
+      allowSingleExtends: true
   '@typescript-eslint/no-inferrable-types':
     - error
     -

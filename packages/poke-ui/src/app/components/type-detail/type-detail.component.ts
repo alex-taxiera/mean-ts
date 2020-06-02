@@ -3,9 +3,10 @@ import {
   OnInit,
   Input,
 } from '@angular/core'
-import { TypeService } from '@poke-app/ng-api-services'
-import { Schemas } from '@poke-app/api'
+import { TypeQuery } from 'src/app/state/type/type.query'
 import { Observable } from 'rxjs'
+import { TypeState } from 'src/app/state/type/type.store';
+import { TypeService } from 'src/app/state/type/type.service';
 
 @Component({
   selector: 'pk-type-detail',
@@ -16,18 +17,20 @@ export class TypeDetailComponent implements OnInit {
 
   @Input() private readonly typeName!: string;
 
-  public type$?: Observable<Schemas.TypeView>
+  public type$?: Observable<TypeState>
 
   constructor (
     private readonly typeService: TypeService,
+    private readonly typeQuery: TypeQuery,
   ) { }
 
-  ngOnInit (): void {
+  public ngOnInit (): void {
     if (this.typeName === undefined) {
       throw Error('typeName is required!')
     }
 
-    this.type$ = this.typeService.getType(this.typeName)
+    this.typeService.get(this.typeName).subscribe()
+    this.type$ = this.typeQuery.selectEntity(this.typeName)
   }
 
 }

@@ -1,4 +1,4 @@
-<ul>
+<ul *ngIf="types$ | async as types">
   <li *ngFor="let type of types">
     <a [routerLink]="type.name">
       {{ type.name | titlecase }}
